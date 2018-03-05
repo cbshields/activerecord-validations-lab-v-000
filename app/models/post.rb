@@ -3,11 +3,12 @@ class Post < ActiveRecord::Base
   validates :content, length: {minimum: 250}
   validates :summary, length: {maximum: 250}
   validates :category, inclusion: { in: %w(Fiction Non-Fiction)}
+  validate :clickbait?
 
   title_array = ["Won't Believe", "Secret", "Top [0-9]*", "Guess"]
 
   def clickbait?
-    if title_array.include? title
+    if title_array.include?(title)
       errors.add(:title "must be clickbait")
     end
   end
