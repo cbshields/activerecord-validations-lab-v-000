@@ -5,11 +5,11 @@ class Post < ActiveRecord::Base
   validates :category, inclusion: { in: %w(Fiction Non-Fiction)}
   validate :clickbait?
 
-  title_array = ["Won't Believe", "Secret", "Top [0-9]*", "Guess"]
+  @title_array = ["Won't Believe", "Secret", "Top [0-9]*", "Guess"]
 
   def clickbait?
     binding.pry
-    if title_array.include?(title)
+    if @title_array.include?(title)
       errors.add(:title, "must be clickbait")
     end
   end
