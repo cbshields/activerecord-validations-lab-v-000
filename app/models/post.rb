@@ -8,7 +8,6 @@ class Post < ActiveRecord::Base
   @title_array = ["Won't Believe", "Secret", "Top [0-9]*", "Guess"]
 
   def clickbait?
-    binding.pry
     if @title_array.include?(title)
       errors.add(:title, "must be clickbait")
     end
